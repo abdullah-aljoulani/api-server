@@ -1,6 +1,10 @@
+'use strict'
 
-module.exports = (err ,req ,res) =>{
-    res.status(500).json({
-        message : `server error ${err}`
-    })
+module.exports = (error,req,res,next)=>{
+res.status(500).json({
+code: 500,
+message: `Server error!! ${error.message}`,
+URL: req.originalUrl,
+body: req.body
+})
 }

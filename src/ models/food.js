@@ -1,17 +1,12 @@
-'use strict';
+'use strict'
 
-
-const food = (sequelize,DataTypes) => sequelize.define('TheFood',{
-    foodName:{
-        type:DataTypes.STRING,
-        allowNull: false
+const food = (sequelize,DataTypes)=> sequelize.define('FOOD', {
+    flavour:{
+     type: DataTypes.STRING
     },
-    foodCounty:{
-        type:DataTypes.STRING,
+color: {
+    type:  DataTypes.STRING
+}
+});
 
-    },
-    Price:{
-        type:DataTypes.INTEGER
-    }
-})
-module.exports= food;
+module.exports = food;

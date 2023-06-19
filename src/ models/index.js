@@ -1,25 +1,24 @@
-
 'use strict'
 
-const { Sequelize, DataTypes } = require("sequelize")
+const { Sequelize, DataTypes } = require("sequelize");
 
-const DATABASE_URL = process.env.NODE_ENV === 'test' ? 'sqlite:memory:' : process.env.DATABASE_URI
+const DB_URL = process.env.NODE_ENV === 'test' ? 'sqlite:memory:' :  process.env.DB_URI;
+
 let sequelizeOptions = process.env.NODE_ENV === 'production' ? {
     dialectOptions: {
-        ssl: {
-            require: true,
-            rejectUnauthorized: false
-        }
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
     }
-} : {}
-let sequelize = new Sequelize(DATABASE_URL, sequelizeOptions)
-const food = require('./food')
-const clothes = require('./clothes')
+  } : {}
 
-module.exports = {
-    db: sequelize,
-    Food: food(sequelize, DataTypes),
-    theClothes: clothes(sequelize, DataTypes)
+  let sequelize = new Sequelize(DB_URL, sequelizeOptions);
+  const clothes = require('./clothes')
+  const food = require('./food')
 
-
-}
+  module.exports = {
+   db: sequelize,
+   Clothes: clothes(sequelize,DataTypes),
+   Food: food(sequelize,DataTypes)
+  }
