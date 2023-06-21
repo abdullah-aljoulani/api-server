@@ -28,8 +28,8 @@ describe('Server test', () => {
 
   it('Add new food record', async () => {
     const res = await mockServer.post('/food').send({
-     flavour: 'Sweet',
-     color: 'Yalllow'
+    flavour: 'Sweet',
+    color: 'Yellow'
     });
     const createdFood = JSON.parse(res.text);
     expect(res.status).toBe(201);
