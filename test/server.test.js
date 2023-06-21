@@ -56,7 +56,6 @@ describe('Server test', () => {
     expect(res.status).toBe(204);
   })
 
-  /////////////////
   it('Add new clothes record', async () => {
     const res = await mockServer.post('/clothes').send({
         color: 'Black',
@@ -78,6 +77,7 @@ it('Read one clothes record using id ', async () => {
     const res = await mockServer.get('/clothes/1');
     expect(res.status).toBe(200);
   })
+
   it('Update clothes record using id', async () => {
     const res = await mockServer.put('/clothes/1');
     expect(res.status).toBe(202);
@@ -94,6 +94,7 @@ it('Add new author record', async () => {
     name: 'abdullah',
     numOfBooks: '4',
   });
+
   const createdAuthor = JSON.parse(res.text);
   expect(res.status).toBe(201);
   expect(createdAuthor.name).toEqual('abdullah')
