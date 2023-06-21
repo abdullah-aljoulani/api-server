@@ -88,3 +88,61 @@ it('Read one clothes record using id ', async () => {
     expect(res.status).toBe(204);
   })
 })
+
+it('Add new author record', async () => {
+  const res = await mockServer.post('/authors').send({
+    name: 'rama',
+    numOfBooks: '4',
+  });
+  const createdAuthor = JSON.parse(res.text);
+  expect(res.status).toBe(201);
+  expect(createdAuthor.name).toEqual('rama')
+});
+
+it('all authors records ', async () => {
+  const res = await mockServer.get('/authors');
+  expect(res.status).toBe(200);
+})
+
+it('Read one authors record using id ', async () => {
+  const res = await mockServer.get('/authors/1');
+  expect(res.status).toBe(200);
+})
+it('Update authors record using id', async () => {
+  const res = await mockServer.put('/authors/1');
+  expect(res.status).toBe(202);
+})
+
+it('Delete authors record using id', async () => {
+  const res = await mockServer.delete('/authors/1');
+  expect(res.status).toBe(204);
+})
+
+it('Add new book record', async () => {
+const res = await mockServer.post('/books').send({
+  name:'java',
+  numOfPages: '200',
+});
+const createdBooks = JSON.parse(res.text);
+expect(res.status).toBe(201);
+expect(createdBooks.name).toEqual('java')
+});
+
+it('all books records ', async () => {
+const res = await mockServer.get('/books');
+expect(res.status).toBe(200);
+})
+
+it('Read one books record using id ', async () => {
+const res = await mockServer.get('/books/1');
+expect(res.status).toBe(200);
+})
+it('Update books record using id', async () => {
+const res = await mockServer.put('/books/1');
+expect(res.status).toBe(202);
+})
+
+it('Delete books record using id', async () => {
+const res = await mockServer.delete('/books/1');
+expect(res.status).toBe(204);
+})
