@@ -4,23 +4,23 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 const DB_URL = process.env.NODE_ENV === 'test' ? 'sqlite:memory:' :  process.env.DB_URI;
 
-let sequelizeOptions =
-    process.env.NODE_ENV === "production"
-        ? {
-            dialectOptions: {
-                ssl: false,
-            },
-        }
-    : {};
+// let sequelizeOptions =
+//     process.env.NODE_ENV === "production"
+//         ? {
+//             dialectOptions: {
+//                 ssl: false,
+//             },
+//         }
+//     : {};
 
-// let sequelizeOptions = process.env.NODE_ENV === 'production' ? {
-//     dialectOptions: {
-//       ssl: {
-//         require: true,
-//         rejectUnauthorized: false
-//       }
-//     }
-//   } : {}
+let sequelizeOptions = process.env.NODE_ENV === 'production' ? {
+    dialectOptions: {
+    ssl: {
+        require: true,
+        rejectUnauthorized: false
+    }
+    }
+} : {}
 
 let sequelize = new Sequelize(DB_URL, sequelizeOptions);
 
@@ -34,7 +34,6 @@ let sequelize = new Sequelize(DB_URL, sequelizeOptions);
     const clothesModel = clothes(sequelize, DataTypes)
     const booksModel = books(sequelize, DataTypes)
     const authorsModel = authors(sequelize, DataTypes)
-
 
     authorsModel.hasMany(booksModel, {foreignKey: 'authorsId', sourceKey: 'id'});
 
