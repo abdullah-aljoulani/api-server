@@ -4,15 +4,6 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 const DB_URL = process.env.NODE_ENV === 'test' ? 'sqlite:memory:' :  process.env.DB_URI;
 
-// let sequelizeOptions =
-//     process.env.NODE_ENV === "production"
-//         ? {
-//             dialectOptions: {
-//                 ssl: false,
-//             },
-//         }
-//     : {};
-
 let sequelizeOptions = process.env.NODE_ENV === 'production' ? {
     dialectOptions: {
     ssl: {

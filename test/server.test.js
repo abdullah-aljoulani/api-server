@@ -91,12 +91,12 @@ it('Read one clothes record using id ', async () => {
 
 it('Add new author record', async () => {
   const res = await mockServer.post('/authors').send({
-    name: 'rama',
+    name: 'abdullah',
     numOfBooks: '4',
   });
   const createdAuthor = JSON.parse(res.text);
   expect(res.status).toBe(201);
-  expect(createdAuthor.name).toEqual('rama')
+  expect(createdAuthor.name).toEqual('abdullah')
 });
 
 it('all authors records ', async () => {
