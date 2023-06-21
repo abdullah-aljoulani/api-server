@@ -4,7 +4,7 @@
 
 
 const express = require('express');
-const {Clothes}=require('../ models/index')
+const {Clothes , clothesCollection}=require('../ models/index')
 const router = express.Router();
 
 
@@ -16,34 +16,34 @@ router.delete ('/clothes/:id', deleteClothesRecord)
 
 
 async function createClothesInstance (req,res){
-const obj = req.body
-const clothes = await Clothes.create(obj)
-res.status(201).json(clothes)
+    const obj = req.body
+    const clothes = await clothesCollection.create(obj)
+    res.status(201).json(clothes)
 }
 
 async function findAllClothesRecords(req,res){
-const allClothes = await Clothes.findAll()
-res.status(200).json(allClothes)
+    const allClothes = await clothesCollection.read()
+    res.status(200).json(allClothes)
 }
 
 async function findOneClothesRecord(req,res){
-let id = req.params.id
-const clothes = await Clothes.findOne({where: {id}})
-res.status(200).json(clothes)
+    let id = req.params.id
+    const clothes = await clothesCollection.read(id)
+    res.status(200).json(clothes)
 }
 
 async function updateClothesRecord(req,res){
     const id = req.params.id;
     const obj = req.body;
-    const clothes = await Clothes.findOne({where: { id }});
-    const updatedClothes = await clothes.update(obj)
+    // const clothes = await Clothes.findOne({where: { id }});
+    const updatedClothes = await clothesCollection.update(id ,obj)
     res.status(202).json(updatedClothes);
 }
 
 
 async function deleteClothesRecord(req,res){
     const id = req.params.id;
-    const deletedClothes= await Clothes.destroy({ where: { id } });
+    const deletedClothes= await clothesCollection.delete(id);
     res.status(204).json(deletedClothes);
 }
 
