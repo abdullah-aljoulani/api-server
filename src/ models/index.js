@@ -22,7 +22,7 @@ let sequelizeOptions =
 //     }
 //   } : {}
 
-let sequelize = new Sequelize(process.env.DB_URL, sequelizeOptions);
+let sequelize = new Sequelize(DB_URL, sequelizeOptions);
 
   const clothes = require('./clothes')
   const food = require('./food')
